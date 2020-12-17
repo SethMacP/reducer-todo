@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.singleTask{
+  background-color:slateblue;
+  color: white;
+}
+p{
+text-align: center;
+}
