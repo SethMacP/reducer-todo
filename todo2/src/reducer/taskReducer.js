@@ -1,4 +1,4 @@
-import {ADD_TASK, COMPLETE_TASK} from '../actions/actions'
+import {ADD_TASK, COMPLETE_TASK, CLEAR_COMPLETE} from '../actions/actions'
 
 
 export const initialState = [
@@ -28,18 +28,16 @@ export const taskReducer = (state, action) =>{
         console.log('Complete task ran on:', action.payload);
         return state.map( item => {
             if(item.id === action.payload)
-            {
-                console.log("YES",item,item.id, action.payload)
-                return {...item, completed: !item.completed}
-            }
+            { // console.log("YES",item,item.id, action.payload)
+                return {...item, completed: !item.completed}}
             else
-            {
-                console.log("NO",item.id, action.payload)
-                return item
-            }
+            {// console.log("NO",item.id, action.payload)
+                return item}
         })
-            
-    
-    default:
-        return state;
-}}
+    }
+    switch(action.type){
+        case(CLEAR_COMPLETE):
+        console.log('CLEAR_COMPLETE ran on: ', action.payload)
+        return state.filter(item =>  {return !item.completed})
+    }
+}

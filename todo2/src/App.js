@@ -3,6 +3,7 @@ import {initialState , taskReducer} from './reducer/taskReducer'
 import React, {useReducer} from 'react'
 import TodoList from './components/TodoList'
 import TodoForm from './components/TodoForm'
+import {CLEAR_COMPLETE} from './actions/actions'
 
 function App() {
 
@@ -19,15 +20,23 @@ function App() {
     dispatch({type:action, payload: taskId})
   }
 
+  const clearComplete = () => {
+    console.log('clearComplete Ran')
+    dispatch({type:CLEAR_COMPLETE})
+  }
+
 
   return (
     <div>
+      <button
+        onClick={ ()=>clearComplete()}>Clear</button>
       <TodoForm
         addTask={addTask}
         />
       <TodoList
         state={state}
         completeTask={completeTask}
+        clearComplete={clearComplete}
         />
       
     </div>
